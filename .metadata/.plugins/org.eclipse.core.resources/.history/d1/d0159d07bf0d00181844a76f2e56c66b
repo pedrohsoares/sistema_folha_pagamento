@@ -1,0 +1,10 @@
+package sistema_folha_pagamento;
+
+public class colaboradorAssalariado {
+	
+	String nome;
+	int id_cartao;
+	float salary;
+	
+
+}

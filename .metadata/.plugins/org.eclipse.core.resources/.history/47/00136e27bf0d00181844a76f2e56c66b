@@ -1,0 +1,9 @@
+package sistema_folha_pagamento;
+
+public class colaboradorHorista {
+	
+	String nome;
+	int id_cartao;
+	int horasTrabalhadasDia;
+
+}

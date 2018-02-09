@@ -1,0 +1,32 @@
+package sistema_folha_pagamento;
+
+public class colaboradorHorista {
+	
+	String nome;
+	int id_cartao;
+	int horasTrabalhadasDia;
+	float salario;
+	boolean sindical;
+	int id;
+
+	/*
+	 * método que paga o colaborador horista
+	 * Entradas: horas trabalhadas no dia e o quanto é pago por hora, respectivamente.
+	 * Saída: valor a ser pago.
+	 */
+	public float pagamendoHorista(int horasTrabalhadasDia, float horaTrabalhada){ 
+		float pagamento = 0;
+		
+		if(horasTrabalhadasDia > 8){
+			float horaExtra = horaTrabalhada - 8;
+			float pagamentoHoraExtra = (float) (1.5*horaExtra);
+			
+			pagamento = horaTrabalhada*8 + pagamentoHoraExtra;
+		}else{
+			pagamento = horasTrabalhadasDia*horaTrabalhada;
+		}
+		
+		return pagamento;
+	}
+
+}

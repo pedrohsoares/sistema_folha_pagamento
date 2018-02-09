@@ -1,0 +1,11 @@
+package sistema_folha_pagamento;
+
+public class colaboradorComissionado {
+
+	String nome;
+	float salario;
+	boolean sindical;
+	int id;
+	int nVendas;
+	
+}
