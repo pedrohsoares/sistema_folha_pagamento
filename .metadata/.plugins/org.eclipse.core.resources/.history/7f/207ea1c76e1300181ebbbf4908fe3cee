@@ -448,34 +448,9 @@ public class main {
 				      System.out.println("Opened database successfully");
 				      
 				      stmt = c.createStatement();
-				   
-				      String sql = "DROP TABLE EMPREGADOS_RENDO";
-				      stmt.executeUpdate(sql);
-
-				      sql = "CREATE TABLE EMPREGADOS_RENDO " +
-		                        "(ID INT PRIMARY KEY     NOT NULL," +
-		                        " NAME           TEXT    NOT NULL, " + 
-		                        " ADDRESS            TEXT     NOT NULL, " + 
-		                        " TIPO        INT NOT NULL, " + 
-		                        " SALARY         DOUBLE NOT NULL)"; 
-
-				      stmt.executeUpdate(sql);
-
-				       sql = "INSERT INTO EMPREGADOS_RENDO SELECT * FROM EMPREGADOS";
 				      
-					      stmt.executeUpdate(sql);
-				       
-					      sql = "DROP TABLE EMPREGADOS";
-					      stmt.executeUpdate(sql);
-
-					      sql = "CREATE TABLE EMPREGADOS " +
-			                        "(ID INT PRIMARY KEY     NOT NULL," +
-			                        " NAME           TEXT    NOT NULL, " + 
-			                        " ADDRESS            TEXT     NOT NULL, " + 
-			                        " TIPO        INT NOT NULL, " + 
-			                        " SALARY         DOUBLE NOT NULL)"; 
-					      stmt.executeUpdate(sql);
-
+				      String sql = "INSERT INTO EMPREGADOS_RENDO SELECT * FROM EMPREGADOS";
+				      
 				      sql = "INSERT INTO EMPREGADOS SELECT * FROM EMPREGADOS_BACKUP";
 				      
 				      stmt.executeUpdate(sql);
@@ -502,19 +477,7 @@ public class main {
 				      
 				      stmt = c.createStatement();
 				      
-				      String sql = "DROP TABLE EMPREGADOS";
-				      stmt.executeUpdate(sql);
-
-				      sql = "CREATE TABLE EMPREGADOS " +
-		                        "(ID INT PRIMARY KEY     NOT NULL," +
-		                        " NAME           TEXT    NOT NULL, " + 
-		                        " ADDRESS            TEXT     NOT NULL, " + 
-		                        " TIPO        INT NOT NULL, " + 
-		                        " SALARY         DOUBLE NOT NULL)"; 
-				      stmt.executeUpdate(sql);
-				     
-				       sql = "INSERT INTO EMPREGADOS SELECT * FROM EMPREGADOS_RENDO";
-
+				      String sql = "INSERT INTO EMPREGADOS SELECT * FROM EMPREGADOS_RENDO";
 				      
 				      stmt.executeUpdate(sql);
 				      stmt.close();

@@ -17,7 +17,7 @@ public class main {
 		//int i = entrada.nextInt();
 	    	
 	//	System.out.println("Seu num digitado foi:" + i);
-	
+		
 		while(true){
 		
 			System.out.println("O que deseja fazer?");	
@@ -54,7 +54,6 @@ public class main {
 				double salario = 0;
 				int type = Integer.parseInt(entrada.nextLine());
 				// vai rolar uns if
-				
 				if(type == 1){
 					
 					System.out.println("Assalariado escolhido");
@@ -127,10 +126,8 @@ public class main {
 				      System.out.println("Opened database successfully");
 				      
 				      stmt = c.createStatement();
-				      
-				      String sql = "INSERT INTO EMPREGADOS_BACKUP SELECT * FROM EMPREGADOS";
-				      
-				      sql = "INSERT INTO EMPREGADOS ( NAME, ADDRESS, TIPO, SALARY)" +
+
+				      String sql = "INSERT INTO EMPREGADOS ( NAME, ADDRESS, TIPO, SALARY)" +
 				    		  		"VALUES (" + "'" + nome + "','" + address + "'," + type + ","+ salario +");";
 				      stmt.executeUpdate(sql);
 				      stmt.close();
@@ -161,12 +158,9 @@ public class main {
 			         c = DriverManager.getConnection("jdbc:sqlite:test.db");
 			         c.setAutoCommit(false);
 			         System.out.println("Opened database successfully");
-			         
+
 			         stmt = c.createStatement();
-			        
-				     String sql = "INSERT INTO EMPREGADOS_BACKUP SELECT * FROM EMPREGADOS";
-      
-			         sql = "DELETE from EMPREGADOS where ID="+ deleteId +";";
+			         String sql = "DELETE from EMPREGADOS where ID="+ deleteId +";";
 			         stmt.executeUpdate(sql);
 			         c.commit();
 
@@ -372,9 +366,7 @@ public class main {
 						
 						   
 						   try {
-							  String sql = "INSERT INTO EMPREGADOS_BACKUP SELECT * FROM EMPREGADOS";
- 
-						      sql = "UPDATE EMPREGADOS set ADDRESS = '"+ address + "' where ID="+ updateId +";";
+						      String sql = "UPDATE EMPREGADOS set ADDRESS = '"+ address + "' where ID="+ updateId +";";
 						      stmt.executeUpdate(sql);
 						      c.commit();
 						      stmt.close();
@@ -392,9 +384,7 @@ public class main {
 						int newType = Integer.parseInt(entrada.nextLine());
 					   
 						   try {
-							  String sql = "INSERT INTO EMPREGADOS_BACKUP SELECT * FROM EMPREGADOS";
- 
-							  sql = "UPDATE EMPREGADOS set TIPO = "+ newType + " where ID="+ updateId +";";
+						      String sql = "UPDATE EMPREGADOS set TIPO = "+ newType + " where ID="+ updateId +";";
 						      stmt.executeUpdate(sql);
 						      c.commit();
 						      stmt.close();
@@ -412,9 +402,7 @@ public class main {
 						double newSalary = Integer.parseInt(entrada.nextLine());
 						   
 						   try {
-							  String sql = "INSERT INTO EMPREGADOS_BACKUP SELECT * FROM EMPREGADOS";
-							   
-							  sql = "UPDATE EMPREGADOS set SALARY = "+ newSalary + " where ID="+ updateId +";";
+						      String sql = "UPDATE EMPREGADOS set SALARY = "+ newSalary + " where ID="+ updateId +";";
 						      stmt.executeUpdate(sql);
 						      c.commit();
 						      stmt.close();
@@ -438,135 +426,14 @@ public class main {
 			if(i == 8){
 				System.out.println("Undo foi escolhido");
 				//voltar para o ultimo estado
-				
-				Connection c = null;
-				Statement stmt = null;
-				try {
-			         Class.forName("org.sqlite.JDBC");
-			         c = DriverManager.getConnection("jdbc:sqlite:test.db");
-			         c.setAutoCommit(false);
-				      System.out.println("Opened database successfully");
-				      
-				      stmt = c.createStatement();
-				   
-				      String sql = "DROP TABLE EMPREGADOS_RENDO";
-				      stmt.executeUpdate(sql);
-
-				      sql = "CREATE TABLE EMPREGADOS_RENDO " +
-		                        "(ID INT PRIMARY KEY     NOT NULL," +
-		                        " NAME           TEXT    NOT NULL, " + 
-		                        " ADDRESS            TEXT     NOT NULL, " + 
-		                        " TIPO        INT NOT NULL, " + 
-		                        " SALARY         DOUBLE NOT NULL)"; 
-
-				      stmt.executeUpdate(sql);
-
-				       sql = "INSERT INTO EMPREGADOS_RENDO SELECT * FROM EMPREGADOS";
-				      
-					      stmt.executeUpdate(sql);
-				       
-					      sql = "DROP TABLE EMPREGADOS";
-					      stmt.executeUpdate(sql);
-
-					      sql = "CREATE TABLE EMPREGADOS " +
-			                        "(ID INT PRIMARY KEY     NOT NULL," +
-			                        " NAME           TEXT    NOT NULL, " + 
-			                        " ADDRESS            TEXT     NOT NULL, " + 
-			                        " TIPO        INT NOT NULL, " + 
-			                        " SALARY         DOUBLE NOT NULL)"; 
-					      stmt.executeUpdate(sql);
-
-				      sql = "INSERT INTO EMPREGADOS SELECT * FROM EMPREGADOS_BACKUP";
-				      
-				      stmt.executeUpdate(sql);
-				      stmt.close();
-				      c.commit();
-				      c.close();
-				
-				} catch ( Exception e ) {
-			         System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-			         System.exit(0);
-			      }
 			}
 			
 			if(i == 9){
 				System.out.println("Rendo foi escolhido");
 				//....
-				Connection c = null;
-				Statement stmt = null;
-				try {
-			         Class.forName("org.sqlite.JDBC");
-			         c = DriverManager.getConnection("jdbc:sqlite:test.db");
-			         c.setAutoCommit(false);
-				      System.out.println("Opened database successfully");
-				      
-				      stmt = c.createStatement();
-				      
-				      String sql = "DROP TABLE EMPREGADOS";
-				      stmt.executeUpdate(sql);
-
-				      sql = "CREATE TABLE EMPREGADOS " +
-		                        "(ID INT PRIMARY KEY     NOT NULL," +
-		                        " NAME           TEXT    NOT NULL, " + 
-		                        " ADDRESS            TEXT     NOT NULL, " + 
-		                        " TIPO        INT NOT NULL, " + 
-		                        " SALARY         DOUBLE NOT NULL)"; 
-				      stmt.executeUpdate(sql);
-				     
-				       sql = "INSERT INTO EMPREGADOS SELECT * FROM EMPREGADOS_RENDO";
-
-				      
-				      stmt.executeUpdate(sql);
-				      stmt.close();
-				      c.commit();
-				      c.close();
-				
-				} catch ( Exception e ) {
-			         System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-			         System.exit(0);
-			      }
 			}
 			
-			
-			if(i == 10){
-				
-			      Connection c = null;
-			      Statement stmt = null;
-			      
-			      try {
-			         Class.forName("org.sqlite.JDBC");
-			         c = DriverManager.getConnection("jdbc:sqlite:test.db");
-			         c.setAutoCommit(false);
-			         System.out.println("Opened database successfully");
-			         
-			         stmt = c.createStatement();
-			        
-   
-			         ResultSet rs = stmt.executeQuery( "SELECT * FROM EMPREGADOS" );
-			         
-			         while ( rs.next() ) {
-			         int id = rs.getInt("ID");
-			         String  name = rs.getString("NAME");
-			         String  address = rs.getString("ADDRESS");
-			         
-			         System.out.println( "ID = " + id );
-			         System.out.println( "NAME = " + name );
-			         System.out.println( "ADDRESS = " + address );
-			         System.out.println();
-			      }
-			      rs.close();
-			      stmt.close();
-			      c.close();
-			      } catch ( Exception e ) {
-			         System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-			         System.exit(0);
-			      }
-			      System.out.println("Operation done successfully");
-				
-				
-			}
-			
-			if(i < 1 || i > 10){
+			if(i < 1 || i > 9){
 				System.out.println("Opção Inválida!");
 	
 			}

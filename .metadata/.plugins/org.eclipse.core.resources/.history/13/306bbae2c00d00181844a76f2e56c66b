@@ -1,7 +1,0 @@
-package sistema_folha_pagamento;
-
-public class colaboradorComissionado {
-	
-	String name;
-	float salario;
-}
