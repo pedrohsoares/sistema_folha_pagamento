@@ -1,0 +1,69 @@
+package sistema_folha_pagamento;
+
+public class main {
+
+	public void opt(){
+		
+	}
+	
+	/*
+	 *  tipoColaborador :
+	 *  0 - colaborador Horista
+	 *  1 - colaborador Assalariado
+	 *  2 - colaborador Comissionado
+	 *  
+	 *  Ao final o sistema precisa gerar um id para cada colaborador
+	 */
+	public void addColaborador(String nome, String address, int tipoColaborador, double salario){
+		
+	}
+	
+	public void removeColaborador(int id){
+		
+	}
+	
+	public void launchId(String nome){
+		
+	}
+	
+	public void launchVenda(String nomeVendedor, double valorVenda ){
+		
+	}
+	
+	public void launchTaxService(double taxa, int id){
+		
+	}
+	
+	public void atualizarDados(int id){
+		
+	}
+	
+	public void undo(){
+		
+	}
+	
+	public void rendo(){
+		
+	}
+	
+	/*
+	 * 0 - semanalmente
+	 * 1 - mensalmente
+	 * 2 - bi-semanalmente
+	 */
+	public void agendaPagamento(int opt){
+		
+	}
+	
+	
+	
+	
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

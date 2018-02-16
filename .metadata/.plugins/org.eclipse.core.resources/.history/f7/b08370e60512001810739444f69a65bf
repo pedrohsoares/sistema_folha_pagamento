@@ -1,0 +1,82 @@
+package sistema_folha_pagamento;
+
+import java.sql.*;
+import java.util.Scanner;
+
+public class main {
+
+
+	
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+	
+		
+		Scanner entrada = new Scanner(System.in);  
+		//int i = entrada.nextInt();
+	    
+	//	System.out.println("Seu num digitado foi:" + i);
+
+		System.out.println("O que deseja fazer?");	
+		System.out.println("1 - Adição de um empregado?");	
+		System.out.println("2 - Remoção de um empregado?");	
+		System.out.println("3 - Lançar um cartão de ponto?");	
+		System.out.println("4 - Lançar um resultado de vendo?");	
+		System.out.println("5 - Lançar uma taxa de serviço?");
+		System.out.println("6 - Alterar detalhes de um empregado?");
+		System.out.println("7 - Rodar folha de empregados do dia?");
+		System.out.println("8 - Undo?");
+		System.out.println("9 - Rendo?");
+		
+		int i = entrada.nextInt();
+		
+		if(i == 1){
+			System.out.println("1 - Adição de um empregado foi escolhido");	
+
+		}
+		
+		if(i == 2){
+			System.out.println("2 - Remoção de um empregado foi escolhido");	
+
+		}
+		
+		if(i == 3){
+			System.out.println("3 - Lançar um cartão de ponto foi escolhido");	
+
+		}
+		
+		if(i == 4){
+			System.out.println("4 - Lançar um resultado de vendo foi escolhido");	
+
+		}
+		
+		if(i == 5){
+			System.out.println("5 - Lançar uma taxa de serviço foi escolhido");
+
+		}
+		
+		if(i == 6){
+			System.out.println("6 - Alterar detalhes de um empregado foi escolhido");
+
+		}
+		
+		if(i == 7){
+			System.out.println("Rodar folha de empregados do dia foi escolhido");
+
+		}
+		
+		if(i == 8){
+			System.out.println("Undo foi escolhido");
+
+		}
+		
+		if(i == 9){
+			System.out.println("Rendo foi escolhido");
+
+		}
+		
+	}
+
+}

@@ -1,0 +1,48 @@
+package sistema_folha_pagamento;
+
+import java.util.Scanner;
+
+public class menu {
+
+
+	
+	
+	public void opt(){
+
+		System.out.println("O que deseja fazer?");	
+		System.out.println("1 - Adição de um empregado?");	
+		System.out.println("2 - Remoção de um empregado?");	
+		System.out.println("3 - Lançar um cartão de ponto?");	
+		System.out.println("4 - Lançar um resultado de vendo?");	
+		System.out.println("5 - Lançar uma taxa de serviço?");
+		System.out.println("6 - Alterar detalhes de um empregado?");
+		System.out.println("7 - Rodar folha de empregados do dia?");
+		System.out.println("8 - Undo?");
+		System.out.println("9 - Rendo?");	
+		
+
+
+	}
+	
+
+	public void undo(){
+		
+	}
+	
+	public void rendo(){
+		
+	}
+	
+	/*
+	 * 0 - semanalmente
+	 * 1 - mensalmente
+	 * 2 - bi-semanalmente
+	 */
+	public void agendaPagamento(int opt){
+		
+	}
+	
+	
+	
+	
+}

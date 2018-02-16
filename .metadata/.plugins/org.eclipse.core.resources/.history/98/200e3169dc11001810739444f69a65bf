@@ -1,0 +1,80 @@
+package sistema_folha_pagamento;
+
+public class colaboradorAssalariado {
+	
+	String nome;
+	float salario;
+	boolean sindical;
+	int id;
+	String endereco;
+	String metodoPagamento;
+	
+	public float pagamentoAssalariado(boolean sindicalizado, float salarioBruto){
+		
+		float pagamento = salarioBruto;
+		
+		if(sindicalizado){
+			float taxa = (float) 0.5*pagamento;
+			pagamento = pagamento - taxa;
+		}
+		
+		return pagamento;
+	}
+	
+	public void metodoPagamento(int nMetodo){
+		
+		if(nMetodo == 0){
+			System.out.println("Opção cheque pelos correios escolhida.");
+			this.metodoPagamento = "Cheque pelos correios";
+		}
+		
+		if(nMetodo == 1){
+			System.out.println("Opção cheque em mãos.");
+			this.metodoPagamento = "Cheque em mãos";
+		}
+		
+		if(nMetodo == 2){
+			System.out.println("Opção depósito em conta.");
+			this.metodoPagamento = "Depósito em conta";
+		}
+		
+		if(nMetodo > 2 || nMetodo < 0){
+			System.out.println("Opção Inválida.");
+
+		}
+	}
+	
+	/*
+	 *  tipoColaborador :
+	 *  0 - colaborador Horista
+	 *  1 - colaborador Assalariado
+	 *  2 - colaborador Comissionado
+	 *  
+	 *  Ao final o sistema precisa gerar um id para cada colaborador
+	 */
+	public void addColaborador(String nome, String address, int tipoColaborador, double salario){
+		colaboradorAssalariado empregado = new colaboradorAssalariado();
+		
+	}
+	
+	public void removeColaborador(int id){
+		
+	}
+	
+	public void launchId(String nome){
+		
+	}
+	
+	public void launchVenda(String nomeVendedor, double valorVenda ){
+		
+	}
+	
+	public void launchTaxService(double taxa, int id){
+		
+	}
+	
+	public void atualizarDados(int id){
+		
+	}
+	
+}

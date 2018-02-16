@@ -1,0 +1,22 @@
+package sistema_folha_pagamento;
+
+public class main {
+
+	public void opt(){
+		
+	}
+	
+	public void addColaborador(String nome, String address, int tipoColaborador, double salario){
+		
+	}
+	
+	
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

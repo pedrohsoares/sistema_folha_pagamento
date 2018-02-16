@@ -1,0 +1,26 @@
+package sistema_folha_pagamento;
+
+import java.sql.*;
+import java.util.Scanner;
+
+public class main {
+
+
+	
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Connection c = null;
+	    Statement stmt = null;
+		
+		Scanner entrada = new Scanner(System.in);  
+		int i = entrada.nextInt();
+	    
+		System.out.println("Seu num digitado foi:" + i);
+		System.out.println("Seu num digitado foi:");
+
+	}
+
+}

@@ -1,0 +1,231 @@
+package sistema_folha_pagamento;
+
+import java.sql.*;
+import java.util.Scanner;
+
+public class main {
+
+	static int sequence = 0;
+	
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		// Conectando ao SQLite
+	/*	
+		Connection c = null;
+		Statement stmt = null;
+		try {
+	         Class.forName("org.sqlite.JDBC");
+	         c = DriverManager.getConnection("jdbc:sqlite:test.db");
+		      System.out.println("Opened database successfully");
+		      
+		      stmt = c.createStatement();
+
+		      String sql = "CREATE TABLE EMPREGADOS (ID INT PRIMARY KEY	NOT NULL, NAME TEXT NOT NULL, ADDRESS TEXT NOT NULL, TIPO INT NOT NULL, SALARIO DOUBLE NOT NULL)  ";
+		      stmt.executeUpdate(sql);
+		      stmt.close();
+		      c.close();
+		
+		} catch ( Exception e ) {
+	         System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	         System.exit(0);
+	      }
+	      System.out.println("Table created successfully");
+	  
+	      */
+	      
+	      
+	
+		Scanner entrada = new Scanner(System.in);  
+		//int i = entrada.nextInt();
+	    
+	//	System.out.println("Seu num digitado foi:" + i);
+
+		while(true){
+		
+			System.out.println("O que deseja fazer?");	
+			System.out.println("1 - Adição de um empregado?");	
+			System.out.println("2 - Remoção de um empregado?");	
+			System.out.println("3 - Lançar um cartão de ponto?");	
+			System.out.println("4 - Lançar um resultado de vendo?");	
+			System.out.println("5 - Lançar uma taxa de serviço?");
+			System.out.println("6 - Alterar detalhes de um empregado?");
+			System.out.println("7 - Rodar folha de empregados do dia?");
+			System.out.println("8 - Undo?");
+			System.out.println("9 - Rendo?");
+			
+			int i = Integer.parseInt(entrada.nextLine());
+			
+			
+			if(i == 1){
+				System.out.println("1 - Adição de um empregado foi escolhido");
+				
+				System.out.println("Digite o nome do empregado");
+			    
+				String nome = entrada.nextLine();
+				
+				System.out.println("nome digitado: " + nome);
+				
+				System.out.println("Digite o endereço do empregado");
+			    
+				String address = entrada.nextLine();
+				
+				System.out.println("Endereço digitado: " + address);
+				
+				System.out.println("Digite o tipo do empregado (1 - Assalariado. 2 - Comissionado. 3 - Horista)");
+			    
+				int type = Integer.parseInt(entrada.nextLine());
+				// vai rolar uns if
+				if(type == 1){
+					
+					System.out.println("Assalariado escolhido");
+					
+					System.out.println("Entre com o salário mensal(dinheiro bruto) do empregado:");
+					
+					String salario = entrada.nextLine();
+					
+					System.out.println("Salario:" + salario);
+					
+				}else if(type == 2){
+					
+					System.out.println("Comissionado escolhido");
+					
+					System.out.println("Entre com a comissão(em percentual) por venda do empregado:");
+					
+					String comissao = entrada.nextLine();
+					
+					System.out.println("Comissao p/venda:" + comissao);
+				
+				}else if(type == 3){
+					
+					System.out.println("Horista escolhido");
+					
+					System.out.println("Entre com o salário por hora(dinheiro bruto) do empregado:");
+					
+					String hora = entrada.nextLine();
+					
+					System.out.println("Salario por hora:" + hora);
+				}else{
+					
+					System.out.println("Tipo inválido!");
+
+				}
+				
+				
+				System.out.println("Gerando ID do empregado...");
+				
+				
+				try {
+					Thread.sleep(3000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				int id = sequence++;
+				
+				System.out.println("ID do empregado: " + id);
+
+				System.out.println("Dados do empregado:");
+				System.out.println("Nome: " + nome);
+				System.out.println("Endereço: " + address);
+				System.out.println("Tipo: " + type);
+				System.out.println("ID: " + id);
+
+				System.out.println("Salvando no Banco de Dados...");
+
+
+				try {
+					Thread.sleep(3000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+
+				Connection c = null;
+				Statement stmt = null;
+				try {
+			         Class.forName("org.sqlite.JDBC");
+			         c = DriverManager.getConnection("jdbc:sqlite:test.db");
+				      System.out.println("Opened database successfully");
+				      
+				      stmt = c.createStatement();
+
+				      String sql = "INSERT INTO EMPREGADOS (ID, NAME, ADDRESS, TIPO, SALARIO)" +
+				    		  		"VALUES (" + id + ",'" + nome + "','" + address + "'," + type + ", 5000);";
+				      stmt.executeUpdate(sql);
+				      stmt.close();
+				      c.commit();
+				      c.close();
+				
+				} catch ( Exception e ) {
+			         System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+			         System.exit(0);
+			      }
+				//criar objeto empregado
+				//chamar metodo addEmpregado
+				//jogar no banco de dados com um id ja criado
+				//breu
+			}
+			
+			if(i == 2){
+				System.out.println("2 - Remoção de um empregado foi escolhido");	
+				//pegar pelo id do funcionario e apagar
+			}
+			
+			if(i == 3){
+				System.out.println("3 - Lançar um cartão de ponto foi escolhido");	
+				// n sei se precisa (prioridade baixa)
+			}
+			
+			if(i == 4){
+				System.out.println("4 - Lançar um resultado de vendo foi escolhido");	
+				//definir venda de comissado
+			}
+			
+			if(i == 5){
+				System.out.println("5 - Lançar uma taxa de serviço foi escolhido");
+				//nova taxa para os funcionarios
+			}
+			
+			if(i == 6){
+				System.out.println("6 - Alterar detalhes de um empregado foi escolhido");
+				// update... pega o bd e atualiza ...
+			}
+			
+			if(i == 7){
+				System.out.println("Rodar folha de empregados do dia foi escolhido");
+				//mostrar a tabela
+			}
+			
+			if(i == 8){
+				System.out.println("Undo foi escolhido");
+				//voltar para o ultimo estado
+			}
+			
+			if(i == 9){
+				System.out.println("Rendo foi escolhido");
+				//....
+			}
+			
+			if(i < 1 || i > 9){
+				System.out.println("Opção Inválida!");
+	
+			}
+			
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
+	}
+
+}

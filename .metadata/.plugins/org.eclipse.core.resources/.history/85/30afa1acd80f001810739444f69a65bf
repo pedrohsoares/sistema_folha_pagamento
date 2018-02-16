@@ -1,0 +1,31 @@
+package sistema_folha_pagamento;
+
+public class main {
+
+	public void opt(){
+		
+	}
+	
+	/*
+	 *  tipoColaborador :
+	 *  0 - colaborador Horista
+	 *  1 - colaborador Assalariado
+	 *  2 - colaborador Comissionado
+	 *  
+	 *  Ao final o sistema precisa gerar um id para cada colaborador
+	 */
+	public void addColaborador(String nome, String address, int tipoColaborador, double salario){
+		
+	}
+	
+	
+	
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
