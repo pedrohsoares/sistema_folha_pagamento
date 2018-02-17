@@ -604,7 +604,7 @@ public class main {
 			         while ( rs.next() ) {
 			         int id = rs.getInt("ID");
 			         String  name = rs.getString("NAME");
-			         String  address = rs.getString("ADDRES");
+			         String  address = rs.getString("ADDRESS");
 			         
 			         System.out.println( "ID = " + id );
 			         System.out.println( "NAME = " + name );

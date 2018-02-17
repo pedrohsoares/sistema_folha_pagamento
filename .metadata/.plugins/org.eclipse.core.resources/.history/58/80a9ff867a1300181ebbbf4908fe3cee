@@ -16,44 +16,23 @@ public class main {
 		Scanner entrada = new Scanner(System.in);  
 		//int i = entrada.nextInt();
 		
-		LocalDate hoje = LocalDate.now();
-		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		System.out.println(hoje.format(formatador));
-	    /*
+		//LocalDate hoje = LocalDate.now();
+		//DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		//System.out.println(hoje.format(formatador));
+	    	
 	      Connection c = null;
-	      Statement stmt = null;
 	      
 	      try {
 	         Class.forName("org.sqlite.JDBC");
 	         c = DriverManager.getConnection("jdbc:sqlite:test.db");
-	         System.out.println("Opened database successfully");
-
-	         stmt = c.createStatement();
-	         String sql = "CREATE TABLE EMPREGADOS_UNDO " +
-                     "(ID INTEGER PRIMARY KEY AUTOINCREMENT     NOT NULL," +
-                     " DATAENTRADA TEXT NOT NULL ," +
-                     " NAME           TEXT    NOT NULL, " + 
-                     " ADDRES            TEXT     NOT NULL, " + 
-                     " TIPO        TEXT NOT NULL, " + 
-                     " SALARY         DOUBLE NOT NULL," +
-                     " SINDICALIZADO INT NOT NULL," +
-                     " PAGAMENTOBRUTO DOUBLE NOT NULL," +
-                     " PAGAMENTOLIQUIDO DOUBLE NOT NULL)";
-
-	         
-
-	         
-	         stmt.executeUpdate(sql);
-	         stmt.close();
-	         c.close();
 	      } catch ( Exception e ) {
 	         System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 	         System.exit(0);
 	      }
-	      System.out.println("Table created successfully");
+	      System.out.println("Opened database successfully");
 	   
-		*/
-	
+		
+	/*
 		while(true){
 		
 			System.out.println("O que deseja fazer?");	
@@ -85,12 +64,6 @@ public class main {
 				
 				System.out.println("Endereço digitado: " + address);
 				
-				System.out.println("Empregado sindicalizado? (1 - Sim, 0 - Não)");
-
-				int sindical = Integer.parseInt(entrada.nextLine());
-
-				System.out.println("Número digitado: " + sindical);
-
 				System.out.println("Digite o tipo do empregado (1 - Assalariado. 2 - Comissionado. 3 - Horista)");
 			    
 				double salario = 0;
@@ -170,10 +143,10 @@ public class main {
 				      
 				      stmt = c.createStatement();
 				      
-				      String sql = "INSERT INTO EMPREGADOS_UNDO SELECT * FROM EMPREGADOS";
+				      String sql = "INSERT INTO EMPREGADOS_BACKUP SELECT * FROM EMPREGADOS";
 				      
-				      sql = "INSERT INTO EMPREGADOS ( DATAENTRADA, NAME, ADDRES, TIPO, SALARY, SINDICALIZADO, PAGAMENTOBRUTO, PAGAMENTOLIQUIDO)" +
-				    		  		"VALUES ('" + hoje.format(formatador) + "','" + nome + "','" + address + "'," + type + ","+ salario +"," + sindical + "," + 0 + "," + 0 + ");";
+				      sql = "INSERT INTO EMPREGADOS ( NAME, ADDRESS, TIPO, SALARY)" +
+				    		  		"VALUES (" + "'" + nome + "','" + address + "'," + type + ","+ salario +");";
 				      stmt.executeUpdate(sql);
 				      stmt.close();
 				      c.commit();
@@ -206,7 +179,7 @@ public class main {
 			         
 			         stmt = c.createStatement();
 			        
-				     String sql = "INSERT INTO EMPREGADOS_UNDO SELECT * FROM EMPREGADOS";
+				     String sql = "INSERT INTO EMPREGADOS_BACKUP SELECT * FROM EMPREGADOS";
       
 			         sql = "DELETE from EMPREGADOS where ID="+ deleteId +";";
 			         stmt.executeUpdate(sql);
@@ -217,7 +190,7 @@ public class main {
 			         while ( rs.next() ) {
 			         int id = rs.getInt("ID");
 			         String  name = rs.getString("NAME");
-			         String  address = rs.getString("ADDRES");
+			         String  address = rs.getString("ADDRESS");
 			         
 			         System.out.println( "ID = " + id );
 			         System.out.println( "NAME = " + name );
@@ -287,12 +260,9 @@ public class main {
 						        	System.out.println("Diaria paga:" + salario);
 
 					        	}
-					        	
-								  String sql = "UPDATE EMPREGADOS set PAGAMENTOBRUTO = "+ salario + " where ID="+ id +";";
-							      stmt.executeUpdate(sql);
 					         }
 				       
-				      c.commit();
+				      
 				      rs.close();
 				      stmt.close();
 				      c.close();
@@ -343,8 +313,10 @@ public class main {
 								
 					        	System.out.println("Digite a data da venda (DD/MM/AAAA) :");
 
-					        	String dataVenda = entrada.nextLine();					        	
-					      	
+					        	String dataVenda = entrada.nextLine();
+					        	
+					        	
+
 					         }
 				       
 				      
@@ -361,14 +333,12 @@ public class main {
 			if(i == 5){
 				System.out.println("5 - Lançar uma taxa de serviço foi escolhido");
 				//nova taxa para os funcionarios
-				
-				
 			}
 			
 			if(i == 6){
 				System.out.println("6 - Alterar detalhes de um empregado foi escolhido");
 				
-				System.out.println("Digite o ID do empregado em que você deseja alterar:");
+				System.out.println("Digite o ID do empregado em que você deseja remover:");
 				
 				int updateId = Integer.parseInt(entrada.nextLine());
 				
@@ -388,7 +358,7 @@ public class main {
 			         while ( rs.next() ) {
 			         int id = rs.getInt("ID");
 			         String  name = rs.getString("NAME");
-			         String  address = rs.getString("ADDRES");
+			         String  address = rs.getString("ADDRESS");
 			         
 			         System.out.println( "ID = " + id );
 			         System.out.println( "NAME = " + name );
@@ -417,9 +387,9 @@ public class main {
 						
 						   
 						   try {
-							  String sql = "INSERT INTO EMPREGADOS_UNDO SELECT * FROM EMPREGADOS";
+							  String sql = "INSERT INTO EMPREGADOS_BACKUP SELECT * FROM EMPREGADOS";
  
-						      sql = "UPDATE EMPREGADOS set ADDRES = '"+ address + "' where ID="+ updateId +";";
+						      sql = "UPDATE EMPREGADOS set ADDRESS = '"+ address + "' where ID="+ updateId +";";
 						      stmt.executeUpdate(sql);
 						      c.commit();
 						      stmt.close();
@@ -437,7 +407,7 @@ public class main {
 						int newType = Integer.parseInt(entrada.nextLine());
 					   
 						   try {
-							  String sql = "INSERT INTO EMPREGADOS_UNDO SELECT * FROM EMPREGADOS";
+							  String sql = "INSERT INTO EMPREGADOS_BACKUP SELECT * FROM EMPREGADOS";
  
 							  sql = "UPDATE EMPREGADOS set TIPO = "+ newType + " where ID="+ updateId +";";
 						      stmt.executeUpdate(sql);
@@ -457,7 +427,7 @@ public class main {
 						double newSalary = Integer.parseInt(entrada.nextLine());
 						   
 						   try {
-							  String sql = "INSERT INTO EMPREGADOS_UNDO SELECT * FROM EMPREGADOS";
+							  String sql = "INSERT INTO EMPREGADOS_BACKUP SELECT * FROM EMPREGADOS";
 							   
 							  sql = "UPDATE EMPREGADOS set SALARY = "+ newSalary + " where ID="+ updateId +";";
 						      stmt.executeUpdate(sql);
@@ -497,16 +467,12 @@ public class main {
 				      String sql = "DROP TABLE EMPREGADOS_RENDO";
 				      stmt.executeUpdate(sql);
 
-				      sql = "CREATE TABLE EMPREGADOS_RENDO" +
-			                     "(ID INTEGER PRIMARY KEY AUTOINCREMENT     NOT NULL," +
-			                     " DATAENTRADA TEXT NOT NULL ," +
-			                     " NAME           TEXT    NOT NULL, " + 
-			                     " ADDRES            TEXT     NOT NULL, " + 
-			                     " TIPO        TEXT NOT NULL, " + 
-			                     " SALARY         DOUBLE NOT NULL," +
-			                     " SINDICALIZADO INT NOT NULL," +
-			                     " PAGAMENTOBRUTO DOUBLE NOT NULL," +
-			                     " PAGAMENTOLIQUIDO DOUBLE NOT NULL)"; 
+				      sql = "CREATE TABLE EMPREGADOS_RENDO " +
+		                        "(ID INT PRIMARY KEY     NOT NULL," +
+		                        " NAME           TEXT    NOT NULL, " + 
+		                        " ADDRESS            TEXT     NOT NULL, " + 
+		                        " TIPO        INT NOT NULL, " + 
+		                        " SALARY         DOUBLE NOT NULL)"; 
 
 				      stmt.executeUpdate(sql);
 
@@ -518,18 +484,14 @@ public class main {
 					      stmt.executeUpdate(sql);
 
 					      sql = "CREATE TABLE EMPREGADOS " +
-				                     "(ID INTEGER PRIMARY KEY AUTOINCREMENT     NOT NULL," +
-				                     " DATAENTRADA TEXT NOT NULL ," +
-				                     " NAME           TEXT    NOT NULL, " + 
-				                     " ADDRES            TEXT     NOT NULL, " + 
-				                     " TIPO        TEXT NOT NULL, " + 
-				                     " SALARY         DOUBLE NOT NULL," +
-				                     " SINDICALIZADO INT NOT NULL," +
-				                     " PAGAMENTOBRUTO DOUBLE NOT NULL," +
-				                     " PAGAMENTOLIQUIDO DOUBLE NOT NULL)";
+			                        "(ID INT PRIMARY KEY     NOT NULL," +
+			                        " NAME           TEXT    NOT NULL, " + 
+			                        " ADDRESS            TEXT     NOT NULL, " + 
+			                        " TIPO        INT NOT NULL, " + 
+			                        " SALARY         DOUBLE NOT NULL)"; 
 					      stmt.executeUpdate(sql);
 
-				      sql = "INSERT INTO EMPREGADOS SELECT * FROM EMPREGADOS_UNDO";
+				      sql = "INSERT INTO EMPREGADOS SELECT * FROM EMPREGADOS_BACKUP";
 				      
 				      stmt.executeUpdate(sql);
 				      stmt.close();
@@ -559,15 +521,11 @@ public class main {
 				      stmt.executeUpdate(sql);
 
 				      sql = "CREATE TABLE EMPREGADOS " +
-			                     "(ID INTEGER PRIMARY KEY AUTOINCREMENT     NOT NULL," +
-			                     " DATAENTRADA TEXT NOT NULL ," +
-			                     " NAME           TEXT    NOT NULL, " + 
-			                     " ADDRES            TEXT     NOT NULL, " + 
-			                     " TIPO        TEXT NOT NULL, " + 
-			                     " SALARY         DOUBLE NOT NULL," +
-			                     " SINDICALIZADO INT NOT NULL," +
-			                     " PAGAMENTOBRUTO DOUBLE NOT NULL," +
-			                     " PAGAMENTOLIQUIDO DOUBLE NOT NULL)";
+		                        "(ID INT PRIMARY KEY     NOT NULL," +
+		                        " NAME           TEXT    NOT NULL, " + 
+		                        " ADDRESS            TEXT     NOT NULL, " + 
+		                        " TIPO        INT NOT NULL, " + 
+		                        " SALARY         DOUBLE NOT NULL)"; 
 				      stmt.executeUpdate(sql);
 				     
 				       sql = "INSERT INTO EMPREGADOS SELECT * FROM EMPREGADOS_RENDO";
@@ -604,7 +562,7 @@ public class main {
 			         while ( rs.next() ) {
 			         int id = rs.getInt("ID");
 			         String  name = rs.getString("NAME");
-			         String  address = rs.getString("ADDRES");
+			         String  address = rs.getString("ADDRESS");
 			         
 			         System.out.println( "ID = " + id );
 			         System.out.println( "NAME = " + name );
@@ -636,7 +594,7 @@ public class main {
 			}
 			
 		}
-		
+		*/
 	}
 
 }
