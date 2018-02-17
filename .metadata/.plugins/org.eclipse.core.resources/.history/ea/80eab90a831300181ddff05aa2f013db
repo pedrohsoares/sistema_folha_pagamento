@@ -476,39 +476,8 @@ public class main {
 			}
 			
 			if(i == 7){
-				System.out.println("Rodar folha de empregados do dia");
+				System.out.println("Rodar folha de empregados do dia foi escolhido");
 				//mostrar a tabela
-				Connection c = null;
-				Statement stmt = null;
-				
-				String diaHoje = hoje.format(formatador);
-				
-				try {
-			         Class.forName("org.sqlite.JDBC");
-			         c = DriverManager.getConnection("jdbc:sqlite:test.db");
-			         c.setAutoCommit(false);
-				      System.out.println("Opened database successfully");
-				      
-				      stmt = c.createStatement();
-				         
-				      ResultSet rs = stmt.executeQuery( "SELECT DATAENTRADA FROM EMPREGADOS ");
-
-					         int id = rs.getInt("ID");
-					         System.out.println( "ID = " + id );
-					         int tipo = rs.getInt("TIPO");
-					         System.out.println("TIPO = " + tipo);
-					         double salario = rs.getDouble("SALARY");
-					         System.out.println("SALARY = " + salario);
-					         System.out.println();
-	    
-				      rs.close();
-				      stmt.close();
-				      c.close();
-				
-				} catch ( Exception e ) {
-			         System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-			         System.exit(0);
-			      }
 			}
 			
 			if(i == 8){
